@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import Logo from "./../assets/castalk.svg"
 
 function Register() {
     const handleSubmit = (event)=> {
@@ -14,8 +15,8 @@ function Register() {
         <FormContainer>
             <form onSubmit={(event)=> handleSubmit(event)}>
                 <div className="brand">
-                    <img src="" alt="" />
-                    <h1>Snappy</h1>
+                    <img src={Logo} alt="Logo" />
+                    <h1>Castalk Chat</h1>
                 </div>
                 <input 
                     type="text" 
@@ -53,6 +54,36 @@ function Register() {
     )
 }
 
-const FormContainer = styled.div``;
+const FormContainer = styled.div`
+    height: 100vh;
+    width:  100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    align-items: center;
+    background-color: #303030;
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        justify-content: center;
+        img {
+            height: 5rem;
+        }
+        h1 {
+            color: wight;
+            text-transform: uppercase
+        }
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        background-color: #323232;
+        border-radius: 2rem;
+        padding: 3rem;
+    }
+`;
 
 export default Register;
