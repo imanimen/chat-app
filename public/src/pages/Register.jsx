@@ -14,7 +14,7 @@ function Register() {
     })
 
     const toastOptions = {
-        position: "top-left",
+        position: "top-center",
         autoClose: 3000,
         pauseOnHover: true,
         draggable: true,
@@ -43,7 +43,7 @@ function Register() {
             <form onSubmit={(event)=> handleSubmit(event)}>
                 <div className="brand">
                     <img src={Logo} alt="Logo" />
-                    <h1>Castalk Chat</h1>
+                    <h1>castalk chat</h1>
                 </div>
                 <input 
                     type="text" 
@@ -103,7 +103,8 @@ const FormContainer = styled.div`
         }
         h1 {
             color: wight;
-            text-transform: uppercase
+            text-transform: uppercase;
+            justify-content: center;
         }
     }
     form {
