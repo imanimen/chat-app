@@ -27,19 +27,20 @@ function Register() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         if (handleValidation()) {
-            const { password, username, email } = values;
+                const { password, username, email } = values;
+
             const { data } = await axios.post(registerRoute, {
                 username,
                 email,
                 password,
               });
-        }
-        if (data.status === false) {
-            toast.error(data.msg, toastOptions)
-        }
-        if (data.status === true) {
-            localStorage.setItem('castalk-chat-user', JSON.stringify(data.user))
-            navigate("/")
+            if (data.status === false) {
+                toast.error(data.msg, toastOptions)
+            }
+            if (data.status === true) {
+                localStorage.setItem('castalk-chat-user', JSON.stringify(data.user))
+                navigate("/")
+            }
         }
     }
 
