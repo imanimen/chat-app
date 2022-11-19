@@ -45,8 +45,7 @@ function Register() {
 
                 <button type="submit">Register</button>
                 <span>
-                        Already have an account? 
-                    <Link to="/login">Login</Link>
+                    <Link to="/login">Already have an account?</Link>
                 </span>
             </form>
         </FormContainer>
@@ -82,7 +81,45 @@ const FormContainer = styled.div`
         gap: 2rem;
         background-color: #323232;
         border-radius: 2rem;
-        padding: 3rem;
+        padding: 3rem 5rem;
+        input {
+            background-color: transaprent;
+            padding: 1rem;
+            border: 0.1rem solid #FFB800;
+            border-radius: 0.4rem;
+            color: wight;
+            width: 100%;
+            font-size: 1rem;
+            &:focus {
+                border: 0.1rem solid #FFB800;
+                outline: none;
+            }
+        }
+        button {
+            background-color: #FFB800;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 0.4rem;
+            font-size: 1rem;
+            text-transform: uppercase;
+            transition: 0.5s ease-in-out;
+            &:hover {
+                background-color: #FFFFFF;
+                color: #FFB800;
+            }
+        }
+        span {
+            color: white;
+            text-transform: uppercase;
+            a {
+                color: #FFB800;
+                text-transform: none;
+                font-weight: bold;
+            }
+        }
     }
 `;
 
