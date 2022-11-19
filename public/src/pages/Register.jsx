@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Await, Link } from "react-router-dom";
+import { Await, Link, useNavigate } from "react-router-dom";
 import Logo from "./../assets/castalk.svg"
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css"
@@ -8,6 +8,7 @@ import axios from "axios"
 import { registerRoute } from "../utils/ApiRoutes";
 
 function Register() {
+    const navigate = useNavigate();
     const [ values, setValues] = useState({
         username: "",
         email: "",
@@ -26,10 +27,19 @@ function Register() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         if (handleValidation()) {
-            const { password, confirmPassword, username, email } = values;
+            const { password, username, email } = values;
             const { data } = await axios.post(registerRoute, {
-                username, email, password
-            });
+                username,
+                email,
+                password,
+              });
+        }
+        if (data.status === false) {
+            toast.error(data.msg, toastOptions)
+        }
+        if (data.status === true) {
+            localStorage.setItem('castalk-chat-user', JSON.stringify(data.user))
+            navigate("/")
         }
     }
 
