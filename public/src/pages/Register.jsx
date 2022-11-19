@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Await, Link } from "react-router-dom";
 import Logo from "./../assets/castalk.svg"
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css"
+import axios from "axios"
+import { registerRoute } from "../utils/ApiRoutes";
 
 function Register() {
     const [ values, setValues] = useState({
@@ -23,7 +25,12 @@ function Register() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        handleValidation();
+        if (handleValidation()) {
+            const { password, confirmPassword, username, email } = values;
+            const { data } = axios.post(registerRoute, {
+                username, email, password
+            });
+        }
     }
 
     const handleValidation = () => {
