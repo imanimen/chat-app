@@ -42,7 +42,12 @@ function Register() {
                 />
 
                 <button type="submit">Register</button>
-                <span>Already have an account?<link to="/login">Login</link></span>
+                {/* <span>Already have an account?<link to="/login">Login</link></span> */}
+                <span>
+                        Already have an account? 
+                        <link >
+                        </link>
+                </span>
             </form>
         </FormContainer>
     </>
