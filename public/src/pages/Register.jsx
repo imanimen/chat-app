@@ -23,11 +23,11 @@ function Register() {
         theme: "dark",
       };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         if (handleValidation()) {
             const { password, confirmPassword, username, email } = values;
-            const { data } = axios.post(registerRoute, {
+            const { data } = await axios.post(registerRoute, {
                 username, email, password
             });
         }
