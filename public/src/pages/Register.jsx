@@ -1,15 +1,42 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Logo from "./../assets/castalk.svg"
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css"
 
 function Register() {
-    const handleSubmit = (event)=> {
-        event.pereventDefault();
-        alert("form")
+    const [ values, setValues] = useState({
+        username: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+    })
+
+    const toastOptions = {
+        position: "top-left",
+        autoClose: 3000,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "dark",
+      };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        handleValidation();
     }
 
-    const handleChange = (event) => {}
+    const handleValidation = () => {
+        const {password, confirmPassword, username, email} = values;
+        if (password !== confirmPassword){
+            toast.error("Passwords do not match! Try again", toastOptions)
+        }
+    }
+
+    const handleChange = (event) => {
+        setValues({...values, [event.target.name]: event.target.value});
+    }
+
     return (
     <>
         <FormContainer>
@@ -45,10 +72,14 @@ function Register() {
 
                 <button type="submit">Register</button>
                 <span>
-                    <Link to="/login">Already have an account?</Link>
+                    Already have an account? 
+                    <Link to="/login"> Login</Link>
                 </span>
             </form>
         </FormContainer>
+        <ToastContainer>
+
+        </ToastContainer>
     </>
     )
 }
@@ -113,8 +144,8 @@ const FormContainer = styled.div`
         }
         span {
             color: white;
-            text-transform: uppercase;
             a {
+                text-decoration: none;
                 color: #FFB800;
                 text-transform: none;
                 font-weight: bold;
